@@ -8,7 +8,7 @@ const { printTable } = require('console-table-printer');
 const runManager = () => {
   console.log('Business Option Choosing Time!');
   
-  
+  // initial prompt
   inquirer.prompt([{
     name: "selectoptions",
     type: "list",
@@ -27,6 +27,7 @@ const runManager = () => {
       'Add Role',
       'Delete Role',
     ]
+    // switch for processing user inputs
   }]).then(options => {
     switch (options.selectoptions) {
       case 'View Departments':
@@ -69,7 +70,7 @@ const runManager = () => {
       };
     });
 };
-
+// department set of functions
 function viewdepartments() {
 DB.viewdepartments().then(function(res){
   printTable(res);
@@ -112,6 +113,7 @@ async function deleteDepartment() {
  });
 };
  
+// employee set of functions
 function createEmp() {
   inquirer.prompt([
     {
@@ -131,4 +133,12 @@ function createEmp() {
   })
 };
 
+// update set of functions
+
+// manager set of functions
+
+// role set of functions
+
+
+// callback for running inquirer
 runManager();
