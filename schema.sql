@@ -1,3 +1,4 @@
+drop database if exists employ_db;
 
 use employ_db;
 
