@@ -27,6 +27,8 @@ const runManager = () => {
       'View Roles',
       'Add Role',
       'Delete Role',
+      'View Roles',
+      'View Employees'
     ]
     // switch for processing user inputs
   }]).then(options => {
@@ -56,7 +58,7 @@ const runManager = () => {
         updateEmpDept();
         break;
       case 'Add Manager':
-        addMan();
+        createMan();
         break;
       case 'Delete Manager':
         deleteMan();
@@ -69,6 +71,9 @@ const runManager = () => {
         break;
       case 'View Roles':
         viewRoles();
+        break;
+      case 'View Employees':
+        viewEmployees();
         break;
 
     };
@@ -84,6 +89,13 @@ function viewdepartments() {
 
 function viewRoles() {
   DB.viewRoles().then(function (res) {
+    printTable(res);
+    runManager();
+  })
+};
+
+function viewEmployees() {
+  DB.viewEmployees().then(function (res) {
     printTable(res);
     runManager();
   })
@@ -181,7 +193,8 @@ async function createEmp() {
 // update set of functions
 
 // manager set of functions
-function createMan() {
+async function createMan() {
+
   inquirer.prompt([
     {
       type: "input",
